@@ -2,13 +2,13 @@ package library
 
 import "crypto/rand"
 
-type idGenerator func(string) string
+type IdGenerator func(string) string
 
-func IdGeneratorOne(key string) string {
+func IdGeneratorAddRandomText(key string) string {
 	salt := rand.Text()
 	return key + salt
 }
 
-func IdGeneratorTwo(key string) string {
+func IdGeneratorAddPrefix(key string) string {
 	return "id_" + key
 }
