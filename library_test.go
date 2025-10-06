@@ -8,7 +8,7 @@ import (
 func TestArrayStorage(t *testing.T) {
 	arrayStorage := library.ArrayBookStorage{
 		BooksArray:  make([]library.Book, 0),
-		IdGenerator: library.IdGeneratorAddRandomText,
+		IDGenerator: library.IDGeneratorAddRandomText,
 	}
 
 	var bookSlice []library.Book
@@ -31,14 +31,14 @@ func TestArrayStorage(t *testing.T) {
 	if arrayStorage.GetBookByName("Grokking Streaming").Name != "" {
 		t.Errorf("Find something that doesn't exist")
 	}
-	if id := arrayStorage.GetBookById(ids[1]).Id; id != ids[1] {
+	if id := arrayStorage.GetBookByID(ids[1]).ID; id != ids[1] {
 		t.Errorf("Find something that doesn't exist. Expected: %s Find: %s", ids[1], id)
 	}
-	if id := arrayStorage.GetBookById(ids[0]).Id; id != ids[0] {
+	if id := arrayStorage.GetBookByID(ids[0]).ID; id != ids[0] {
 		t.Errorf("Find something that doesn't exist Expected: %s Find: %s", ids[0], id)
 	}
 
-	arrayStorage.IdGenerator = library.IdGeneratorAddPrefix
+	arrayStorage.IDGenerator = library.IDGeneratorAddPrefix
 	arrayStorage.BooksArray = make([]library.Book, 0)
 
 	ids = make([]string, 0)
@@ -50,10 +50,10 @@ func TestArrayStorage(t *testing.T) {
 		ids = append(ids, id)
 	}
 
-	if arrayStorage.GetBookById(ids[0]).Name != "Harry Potter" {
+	if arrayStorage.GetBookByID(ids[0]).Name != "Harry Potter" {
 		t.Errorf("Doesn't find book")
 	}
-	if arrayStorage.GetBookById(ids[2]).Name != "Grokking Algorithms" {
+	if arrayStorage.GetBookByID(ids[2]).Name != "Grokking Algorithms" {
 		t.Errorf("Doesn't find book")
 	}
 }
@@ -61,7 +61,7 @@ func TestArrayStorage(t *testing.T) {
 func TestMapStorage(t *testing.T) {
 	mapStorage := library.MapBookStorage{
 		BooksMap:    make(map[string]library.Book),
-		IdGenerator: library.IdGeneratorAddRandomText,
+		IDGenerator: library.IDGeneratorAddRandomText,
 	}
 
 	var bookSlice []library.Book
@@ -84,14 +84,14 @@ func TestMapStorage(t *testing.T) {
 	if mapStorage.GetBookByName("Grokking Streaming").Name != "" {
 		t.Errorf("Find something that doesn't exist")
 	}
-	if id := mapStorage.GetBookById(ids[1]).Id; id != ids[1] {
+	if id := mapStorage.GetBookByID(ids[1]).ID; id != ids[1] {
 		t.Errorf("Find something that doesn't exist. Expected: %s Find: %s", ids[1], id)
 	}
-	if id := mapStorage.GetBookById(ids[0]).Id; id != ids[0] {
+	if id := mapStorage.GetBookByID(ids[0]).ID; id != ids[0] {
 		t.Errorf("Find something that doesn't exist Expected: %s Find: %s", ids[0], id)
 	}
 
-	mapStorage.IdGenerator = library.IdGeneratorAddPrefix
+	mapStorage.IDGenerator = library.IDGeneratorAddPrefix
 	mapStorage.BooksMap = make(map[string]library.Book)
 
 	ids = make([]string, 0)
@@ -103,10 +103,10 @@ func TestMapStorage(t *testing.T) {
 		ids = append(ids, id)
 	}
 
-	if mapStorage.GetBookById(ids[0]).Name != "Harry Potter" {
+	if mapStorage.GetBookByID(ids[0]).Name != "Harry Potter" {
 		t.Errorf("Doesn't find book")
 	}
-	if mapStorage.GetBookById(ids[2]).Name != "Grokking Algorithms" {
+	if mapStorage.GetBookByID(ids[2]).Name != "Grokking Algorithms" {
 		t.Errorf("Doesn't find book")
 	}
 }

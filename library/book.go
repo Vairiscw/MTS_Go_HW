@@ -4,5 +4,5 @@ type Book struct {
 	Name   string
 	Author string
 	Year   int
-	Id     string
+	ID     string
 }
